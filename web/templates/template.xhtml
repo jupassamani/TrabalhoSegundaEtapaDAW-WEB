@@ -12,7 +12,7 @@
             <h:outputScript library="js" name="scripts.js"/>
         </h:head>
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" header="Sistema com JSF 2.2 e JPA 2.1" style="text-align: center">
+            <p:layoutUnit position="north" header="Trabalho Segunda Etapa DAW" style="text-align: center">
                 
             </p:layoutUnit>
             <p:layoutUnit position="west" header="Menu" resizable="true"
@@ -20,18 +20,10 @@
                 <h:form id="menu" prependId="false">
                     <p:menu>
                         <p:submenu label="Cadastros">
-                            <p:menuitem action="#{controleEstado.listar()}"
-                                        value="Manutenção de Estados"
+                            <p:menuitem action="#{controleGame.listar()}"
+                                        value="Manutenção de Games"
                                         ajax="false"/>
-                            <p:menuitem action="#{controleCidade.listar()}"
-                                        value="Manutenção de Cidades"
-                                        ajax="false"/>   
-                            <p:menuitem action="#{controleProduto.listar()}"
-                                        value="Manutenção de Produtos"
-                                        ajax="false"/>     
-                            <p:menuitem action="#{controlePessoaFisica.listar()}"
-                                        value="Manutenção de Pessoas Fisicas"
-                                        ajax="false"/>                               
+                              
                         </p:submenu>
                     </p:menu>
                 </h:form>
@@ -46,7 +38,7 @@
             </ui:insert>
             <p:layoutUnit position="south">
                 <ui:include src="/templates/ajaxstatus.xhtml"/>
-                <div align="center">Direitos reservados</div>
+                <div align="center">By Julia Chiarello Passamani</div>
             </p:layoutUnit>
         </p:layout>        
     </f:view>

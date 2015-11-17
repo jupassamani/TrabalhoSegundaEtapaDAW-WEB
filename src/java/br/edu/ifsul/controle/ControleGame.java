@@ -26,8 +26,9 @@ public class ControleGame implements Serializable{
     private Game objeto;
     private GeneroDAO daoGenero;
 
-    public ControleGame(GameDAO dao, GeneroDAO daoGenero) {
+    public ControleGame() {
         dao = new GameDAO();
+        objeto = new Game();
         daoGenero = new GeneroDAO();
     }
     

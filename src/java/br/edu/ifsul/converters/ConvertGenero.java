@@ -21,7 +21,7 @@ import javax.persistence.Persistence;
  * @author jupassamani
  * @email juliapassamani@me.com
  */
-@FacesConverter(value = "converterGenero")
+@FacesConverter(value = "convertGenero")
 public class ConvertGenero implements Serializable, Converter{
     
     @Override
