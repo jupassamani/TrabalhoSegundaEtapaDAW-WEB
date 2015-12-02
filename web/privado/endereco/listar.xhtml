@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="titulo">Manutenção de Endereços</ui:define>
+        <ui:define name="conteudo">
+            <h:form id="formListagem" prependId="false">
+                <p:growl/>
+                <p:commandButton actionListener="#{controleEndereco.novo()}"
+                                 value="Novo"
+                                 oncomplete="PF('dlg').show();" update=":formEdicao"/>
+                <p:dataTable value="#{controleEndereco.dao.listarTodos}" var="obj">
+                    <f:facet name="header">
+                        <p:outputLabel value="Listagem de Endereços"/>
+                    </f:facet>
+                    <f:facet name="footer">
+                        <p:outputLabel value="Total de registros: #{controleEndereco.dao.listarTodos.size()}"/>
+                    </f:facet>                
+                    <p:column headerText="ID">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.id}"/>
+                        </div>
+                    </p:column>
+                    <p:column headerText="Rua">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.rua}"/>
+                        </div>
+                    </p:column>
+                    <p:column headerText="Complemento">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.complemento}"/>
+                        </div>
+                    </p:column>
+                    <p:column headerText="Bairro">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.bairro}"/>
+                        </div>
+                    </p:column>
+                    <p:column headerText="CEP">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.cep}"/>
+                        </div>
+                    </p:column>
+                    <p:column headerText="Cidade">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.cidade}"/>
+                        </div>
+                    </p:column>
+                    <p:column headerText="Estado">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.estado}"/>
+                        </div>
+                    </p:column>
+                    <p:column headerText="Ações">
+                        <div align="center">
+                            <p:commandButton icon="ui-icon-pencil"
+                                             actionListener="#{controleEndereco.editar(obj.id)}"
+                                             oncomplete="PF('dlg').show();"
+                                             update=":formEdicao"
+                                             process="@form" id="btnAlterar"/>
+                            <p:commandButton icon="ui-icon-trash"
+                                             actionListener="#{controleEndereco.remover(obj.id)}"
+                                             onclick="if (!confirm('Confirma a exclusão do objeto'))
+                                                         return false"
+                                             update=":formListagem" id="btnExcluir"/>
+                        </div>
+                        <p:tooltip for="btnAlterar" value="Alterar"/>
+                        <p:tooltip for="btnExcluir" value="Excluir"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>            
+        </ui:define>
+        <ui:define name="dialogos">
+            <p:dialog header="Edição" widgetVar="dlg" resizable="false" modal="true"
+                      position="top">
+                <h:form id="formEdicao" prependId="false">
+                    <p:growl/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:outputLabel value="Edição de Endereços"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <div align="center">
+                                <p:commandButton value="Salvar" icon="ui-icon-disk"
+                                                 update=":formListagem :formEdicao" 
+                                                 actionListener="#{controleEndereco.salvar()}"
+                                                 oncomplete="if(!args.validationFailed){PF('dlg').hide();}"/>
+                            </div>
+                        </f:facet>
+                        <p:outputLabel value="ID" for="txtID"/>
+                        <p:inputText value="#{controleEndereco.objeto.id}" size="5" readonly="true" id="txtID"/>
+                        <p:outputLabel value="Rua" for="txtRua"/>
+                        <p:inputText value="#{controleEndereco.objeto.rua}" size="50" maxlength="50"
+                                     id="txtRua" placeholder="Obrigatório"/> 
+                        <p:outputLabel value="Complemento" for="txtComplemento"/>
+                                    <p:inputText id="txtComplemento" value="#{controleEndereco.objeto.complemento}"
+                                                 size="50" maxlength="50"/> 
+                         <p:outputLabel value="Bairro" for="txtBairro"/>
+                                    <p:inputText id="txtBairro" value="#{controleEndereco.objeto.bairro}"
+                                                 size="30" maxlength="30"/> 
+                                    <p:outputLabel value="CEP" for="txtCep"/>
+                                    <p:inputMask id="txtCep" size="10"
+                                                 mask="99999-999" 
+                                                 value="#{controleEndereco.objeto.cep}"/>
+                        <p:outputLabel value="Cidade" for="txtCidade"/>
+                        <p:inputText id="txtCidade" value="#{controleEndereco.objeto.cidade}"
+                                                 size="30" maxlength="30"/>
+                        <p:outputLabel value="Estado" for="txtEstado"/>
+                        <p:inputText id="txtEstado" value="#{controleEndereco.objeto.estado}"
+                                                 size="30" maxlength="30"/>
+                                    
+                    </p:panelGrid>
+                </h:form>
+                <ui:include src="/templates/ajaxstatus.xhtml"/>
+            </p:dialog>            
+        </ui:define>
+    </ui:composition>
+
+</html>
+

@@ -6,9 +6,8 @@
 
 package br.edu.ifsul.controle;
 
-import br.edu.ifsul.dao.ClienteTitularDAO;
 import br.edu.ifsul.dao.EnderecoDAO;
-import br.edu.ifsul.modelo.ClienteTitular;
+import br.edu.ifsul.modelo.Endereco;
 import br.edu.ifsul.util.Util;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
@@ -19,25 +18,22 @@ import javax.faces.bean.ViewScoped;
  * @author jupassamani
  * @email juliapassamani@me.com
  */
-@ManagedBean(name = "controleClienteTitular")
+@ManagedBean(name = "controleEndereco")
 @ViewScoped
-public class ControleClienteTitular implements Serializable{
-    private ClienteTitular objeto;
-    private ClienteTitularDAO dao;
-    private EnderecoDAO daoEndereco;
+public class ControleEndereco implements Serializable{
+    private Endereco objeto;
+    private EnderecoDAO dao;
 
-    public ControleClienteTitular() {
-        dao = new ClienteTitularDAO();
-        objeto = new ClienteTitular();
-        daoEndereco = new EnderecoDAO();
+    public ControleEndereco() {
+        objeto = new Endereco();
+        dao = new EnderecoDAO();
     }
-    
     public String listar() {
-        return "/privado/clientetitular/listar?faces-redirect=true";
+        return "/privado/endereco/listar?faces-redirect=true";
     }
 
     public void novo() {
-        objeto = new ClienteTitular();
+        objeto = new Endereco();
     }
 
     public void salvar() {
@@ -68,28 +64,23 @@ public class ControleClienteTitular implements Serializable{
             Util.mensagemErro(e.getMessage());
         }
     }
-
-    public ClienteTitular getObjeto() {
+    
+    public Endereco getObjeto() {
         return objeto;
     }
 
-    public void setObjeto(ClienteTitular objeto) {
+    public void setObjeto(Endereco objeto) {
         this.objeto = objeto;
     }
 
-    public ClienteTitularDAO getDao() {
+    public EnderecoDAO getDao() {
         return dao;
     }
 
-    public void setDao(ClienteTitularDAO dao) {
+    public void setDao(EnderecoDAO dao) {
         this.dao = dao;
     }
+    
+           
 
-    public EnderecoDAO getDaoEndereco() {
-        return daoEndereco;
-    }
-
-    public void setDaoEndereco(EnderecoDAO daoEndereco) {
-        this.daoEndereco = daoEndereco;
-    }
 }

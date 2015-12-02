@@ -21,16 +21,22 @@
                     <p:menu>
                         <p:submenu label="Cadastros">
                             <p:menuitem action="#{controleGame.listar()}"
-                                        value="Manutenção de Games"
+                                        value="Games"
                                         ajax="false"/>
                             <p:menuitem action="#{controleGenero.listar()}"
-                                        value="Manutenção de Gêneros"
+                                        value="Gêneros"
                                         ajax="false"/>  
                             <p:menuitem action="#{controleLocacao.listar()}"
-                                        value="Manutenção de Locações"
+                                        value="Locações"
                                         ajax="false"/>
                             <p:menuitem action="#{controlePlataforma.listar()}"
-                                        value="Manutenção de Plataformas"
+                                        value="Plataformas"
+                                        ajax="false"/>
+                            <p:menuitem action="#{controleEndereco.listar()}"
+                                        value="Endereços"
+                                        ajax="false"/>
+                            <p:menuitem action="#{controleClienteTitular.listar()}"
+                                        value="Clientes Titulares"
                                         ajax="false"/>
                         </p:submenu>
                     </p:menu>
