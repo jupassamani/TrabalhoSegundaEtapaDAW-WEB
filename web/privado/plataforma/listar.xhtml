@@ -79,9 +79,15 @@
                         </f:facet>
                         <p:outputLabel value="ID" for="txtID"/>
                         <p:inputText value="#{controlePlataforma.objeto.id}" size="5" readonly="true" id="txtID"/>
-                        <p:outputLabel value="Descrição" for="txtDescricao"/>
-                        <p:inputText value="#{controlePlataforma.objeto.descricao}" size="50" maxlength="50"
-                                     id="txtDescricao" placeholder="Obrigatório"/>                                                
+                        <p:outputLabel value="Nome" for="txtNome"/>
+                        <p:inputText value="#{controlePlataforma.objeto.nome}" size="50" maxlength="50"
+                                     id="txtNome" placeholder="Obrigatório"/>
+                        <p:outputLabel value="Fabricante" for="txtFabricante"/>
+                        <p:inputText value="#{controlePlataforma.objeto.fabricante}" size="50" maxlength="50"
+                                     id="txtFabricante" placeholder="Obrigatório"/>    
+                        <p:outputLabel value="Tipo de Mídia" for="txtTipoMidia"/>
+                        <p:inputText value="#{controlePlataforma.objeto.tipo_midia}" size="50" maxlength="50"
+                                     id="txtTipoMidia" placeholder="CD/DVD/FITA"/>    
                     </p:panelGrid>
                 </h:form>
                 <ui:include src="/templates/ajaxstatus.xhtml"/>
