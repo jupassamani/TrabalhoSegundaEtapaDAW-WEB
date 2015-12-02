@@ -6,39 +6,50 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/templates/template.xhtml">
-        <ui:define name="titulo">Manutenção de Gêneros</ui:define>
+        <ui:define name="titulo">Manutenção de Plataformas</ui:define>
         <ui:define name="conteudo">
             <h:form id="formListagem" prependId="false">
                 <p:growl/>
-                <p:commandButton actionListener="#{controleGenero.novo()}"
+                <p:commandButton actionListener="#{controlePlataforma.novo()}"
                                  value="Novo"
                                  oncomplete="PF('dlg').show();" update=":formEdicao"/>
-                <p:dataTable value="#{controleGenero.dao.listarTodos}" var="obj">
+                <p:dataTable value="#{controlePlataforma.dao.listarTodos}" var="obj">
                     <f:facet name="header">
                         <p:outputLabel value="Listagem de Gêneros"/>
                     </f:facet>
                     <f:facet name="footer">
-                        <p:outputLabel value="Total de registros: #{controleGenero.dao.listarTodos.size()}"/>
+                        <p:outputLabel value="Total de registros: #{controlePlataforma.dao.listarTodos.size()}"/>
                     </f:facet>                
                     <p:column headerText="ID">
                         <div align="center">
                             <p:outputLabel value="#{obj.id}"/>
                         </div>
                     </p:column>
-                    <p:column headerText="Descrição">
+                    <p:column headerText="Nome">
                         <div align="center">
-                            <p:outputLabel value="#{obj.descricao}"/>
+                            <p:outputLabel value="#{obj.nome}"/>
                         </div>
-                    </p:column>                     
+                    </p:column>  
+                    <p:column headerText="Fabricante">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.fabricante}"/>
+                        </div>
+                    </p:column>
+                    <p:column headerText="Tipo de Mídia">
+                        <div align="center">
+                            <p:outputLabel value="#{obj.tipo_midia}"/>
+                        </div>
+                    </p:column>
+                   
                     <p:column headerText="Ações">
                         <div align="center">
                             <p:commandButton icon="ui-icon-pencil"
-                                             actionListener="#{controleGenero.editar(obj.id)}"
+                                             actionListener="#{controlePlataforma.editar(obj.id)}"
                                              oncomplete="PF('dlg').show();"
                                              update=":formEdicao"
                                              process="@form" id="btnAlterar"/>
                             <p:commandButton icon="ui-icon-trash"
-                                             actionListener="#{controleGenero.remover(obj.id)}"
+                                             actionListener="#{controlePlataforma.remover(obj.id)}"
                                              onclick="if (!confirm('Confirma a exclusão do objeto'))
                                                          return false"
                                              update=":formListagem" id="btnExcluir"/>
@@ -56,20 +67,20 @@
                     <p:growl/>
                     <p:panelGrid columns="2">
                         <f:facet name="header">
-                            <p:outputLabel value="Edição de Gêneros"/>
+                            <p:outputLabel value="Edição de Plataformas"/>
                         </f:facet>
                         <f:facet name="footer">
                             <div align="center">
                                 <p:commandButton value="Salvar" icon="ui-icon-disk"
                                                  update=":formListagem :formEdicao" 
-                                                 actionListener="#{controleGenero.salvar()}"
+                                                 actionListener="#{controlePlataforma.salvar()}"
                                                  oncomplete="if(!args.validationFailed){PF('dlg').hide();}"/>
                             </div>
                         </f:facet>
                         <p:outputLabel value="ID" for="txtID"/>
-                        <p:inputText value="#{controleGenero.objeto.id}" size="5" readonly="true" id="txtID"/>
+                        <p:inputText value="#{controlePlataforma.objeto.id}" size="5" readonly="true" id="txtID"/>
                         <p:outputLabel value="Descrição" for="txtDescricao"/>
-                        <p:inputText value="#{controleGenero.objeto.descricao}" size="50" maxlength="50"
+                        <p:inputText value="#{controlePlataforma.objeto.descricao}" size="50" maxlength="50"
                                      id="txtDescricao" placeholder="Obrigatório"/>                                                
                     </p:panelGrid>
                 </h:form>

@@ -21,7 +21,9 @@
                         <p:outputLabel value="Total de registros: #{controleGame.dao.listarTodos.size()}"/>
                     </f:facet>                
                     <p:column headerText="ID">
-                        <p:outputLabel value="#{obj.id}"/>
+                        <div align="center">
+                            <p:outputLabel value="#{obj.id}"/>
+                        </div>
                     </p:column>
                     <p:column headerText="Nome">
                         <p:outputLabel value="#{obj.nome}"/>
@@ -90,7 +92,7 @@
                                           itemLabel="Selecione um registro"/>
                             <f:selectItems value="#{controleGame.daoGenero.listarTodos}"
                                            var="g" itemLabel="#{g.descricao}"/>
-                        </p:selectOneMenu>                                             
+                        </p:selectOneMenu>     
                     </p:panelGrid>
                 </h:form>
                 <ui:include src="/templates/ajaxstatus.xhtml"/>
